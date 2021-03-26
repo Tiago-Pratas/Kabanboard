@@ -1,0 +1,33 @@
+<div class="root">
+    <div class="nes-container is-rounded is-dark">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <h1 class="app-name has-gradient">Kanban Board</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="board">
+        <div class="board-bar nes-container is-rounded with-title is-dark">
+            <p class="title">Board Name</p>
+        </div>
+
+        <div class="board-wrapper">
+            <div class="board-columns nes-container is-rounded" cdkDropListGroup>
+                <div class="board-column" *ngFor="let column of board.columns">
+                    <div class="column-title">{{ column.name }}</div>
+                    
+                    <div class="task-container"
+                        cdkDropList
+                        [cdkDropListData]="column.tasks"
+                        (cdkDropListDropped)="drop($event)">
+
+                        <div class="task nes-balloon" *ngFor="let item of column.tasks" cdkDrag>
+                            {{ item }}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
